@@ -16,7 +16,7 @@
 */
 
 #include <device_atomic_functions.h>
-#include <device_functions.h>
+#include <cuda_runtime.h>
 
 __device__ uint64_t* _2Gnx = NULL;
 __device__ uint64_t* _2Gny = NULL;
@@ -1189,6 +1189,7 @@ __device__ void ComputeKeysSEARCH_ETH_MODE_SA(uint64_t* startx, uint64_t* starty
 	ModSub256(py, _2Gnx, px);
 	_ModMult(py, _s);                    // py = - s*(ret.x-p2.x)
 	ModSub256(py, _2Gny);                // py = - p2.y - s*(ret.x-p2.x);
+
 
 	// Update starting point
 	__syncthreads();
